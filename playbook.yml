@@ -3,7 +3,7 @@
   hosts: all
   become: true
   vars:
-    - directory: /home/vagrant
+    - directory: /home/vagrant/yolo
   tasks:
     - name: Update Server
       apt:
@@ -17,4 +17,53 @@
     - name: Clone Yolo Repository
       git:
         repo: https://github.com/Moses-Maina-ctrl/yolo.git
-        dest: "{{ directory }}/yolo"
+        dest: "{{ directory }}"
+
+    - name: Install required dependencies
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+    
+    - name: Create Directory for Docker's GPG Key
+      file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+    
+    - name: Add Docker GPG apt key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        keyring: /etc/apt/keyrings/docker.gpg
+        state: present
+    
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
+        state: present
+    
+    - name: Update Apt
+      apt:
+        update_cache: yes
+
+    - name: Install Docker and Docker Compose packages
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      loop:
+        - docker-ce
+        - docker-ce-cli
+        - docker-compose-plugin
+
+    - name: Start Docker Containers
+      docker_compose:
+        project_src: "{{ directory }}"
+        state: present
