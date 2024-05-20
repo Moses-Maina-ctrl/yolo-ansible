@@ -1,0 +1,14 @@
+---
+- name: Update Server
+  apt:
+    update_cache: true
+  
+- name: Install Git
+  apt:
+    name: git
+    state: present
+
+- name: Clone Yolo Repository
+  git:
+    repo: https://github.com/Moses-Maina-ctrl/yolo.git
+    dest: "{{ directory }}"

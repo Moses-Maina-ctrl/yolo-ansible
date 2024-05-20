@@ -1,0 +1,10 @@
+---
+- name: Yolo
+  hosts: all
+  become: true
+  vars:
+    directory: /home/vagrant/yolo
+  roles:
+    - CloneRepo
+    - InstallDocker
+    - RunContainers
