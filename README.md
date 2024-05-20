@@ -1,4 +1,4 @@
-# USING ANSIBLE AND TO RUN A SIMPLE REACT APP (YOLO)
+# USING ANSIBLE AND DOCKER TO RUN A SIMPLE REACT APP 
 
 This project aims to make spinning up a simple react app quickly and easily either on a local virtual machine or on the cloud(Amazon EC2) using ansible and Docker.
 
