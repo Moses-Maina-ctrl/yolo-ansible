@@ -16,4 +16,4 @@ This project aims to make spinning up a simple react app quickly and easily eith
 
   1. Download this project.
   2. Open Terminal, cd to this directory (containing the `Vagrantfile` and this README file).
-  3. Type in `vagrant up`. The ansible playbook will run automatically since it has been provisioned in the Vagrantfile.
+  3. Type in `vagrant up`. The ansible playbook will run automatically since it has been provisioned in the Vagrantfile. (If  your vm is already running run `vagrant provisoning`)
