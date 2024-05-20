@@ -12,7 +12,7 @@ This project aims to make spinning up a simple react app quickly and easily eith
   2. Download and install [Vagrant](http://www.vagrantup.com/downloads.html).
   3. Download and install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 
-### 2 - Build the Virtual Machine
+#### 2 - Build the Virtual Machine
 
   1. Download this project.
   2. Open Terminal, cd to this directory (containing the `Vagrantfile` and this README file).
