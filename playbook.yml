@@ -3,7 +3,7 @@
   hosts: all
   become: true
   vars:
-    - directory: /home/vagrant/yolo
+    directory: /home/vagrant/yolo
   tasks:
     - name: Update Server
       apt:
@@ -29,9 +29,21 @@
           - python3-pip
           - virtualenv
           - python3-setuptools
+          - gnupg
         state: latest
         update_cache: true
-    
+
+    - name: Upgrade pip
+      pip:
+        name: pip
+        state: latest
+
+    - name: Install docker-compose using pip
+      pip:
+        name:
+          - docker==5.0.3
+          - docker-compose==1.29.2
+
     - name: Create Directory for Docker's GPG Key
       file:
         path: /etc/apt/keyrings
@@ -41,12 +53,11 @@
     - name: Add Docker GPG apt key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
-        keyring: /etc/apt/keyrings/docker.gpg
         state: present
     
     - name: Add Docker Repository
       apt_repository:
-        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
+        repo: deb  https://download.docker.com/linux/ubuntu focal stable
         state: present
     
     - name: Update Apt
@@ -61,6 +72,8 @@
       loop:
         - docker-ce
         - docker-ce-cli
+        - containerd.io
+        - docker-buildx-plugin
         - docker-compose-plugin
 
     - name: Start Docker Containers
