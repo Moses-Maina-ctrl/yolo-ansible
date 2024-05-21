@@ -30,9 +30,9 @@ This project aims to make spinning up a simple react app quickly and easily eith
   5. Create a `terraform.tfvars` file and add key_pairs and private_key_path.
 
   ```
-  key_name = "my-key-pair
-  private_key_path = "~/.ssh/my-private-key
+  key_name = "my-key-pair"
+  private_key_path = "~/.ssh/my-private-key"
   
   ```
-  6. Run `terraform apply (The ansible playbook wil run automatically and start the docker containers)
+  6. Run `terraform apply` (The ansible playbook wil run automatically and start the docker containers)
   7. The public Ip address will be shown and you can access the site using it.
