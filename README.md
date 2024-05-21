@@ -17,3 +17,22 @@ This project aims to make spinning up a simple react app quickly and easily eith
   1. Download this project.
   2. Open Terminal, cd to this directory (containing the `Vagrantfile` and this README file).
   3. Type in `vagrant up`. The ansible playbook will run automatically since it has been provisioned in the Vagrantfile. (If  your vm is already running run `vagrant provisoning`)
+## EC2 Virtual Machine
+
+### Quick Start Guide
+
+#### 1 - Install Terraform
+
+  1. Switch to `Stage_two` branch
+  2. Download this project.
+  3. Open Terminal, cd to Stage_two directory (containing the terraform files).
+  4. Type in `terraform init`to initialize
+  5. Create a `terraform.tfvars` file and add key_pairs and private_key_path.
+
+  ```
+  key_name = "my-key-pair
+  private_key_path = "~/.ssh/my-private-key
+  
+  ```
+  6. Run `terraform apply (The ansible playbook wil run automatically and start the docker containers)
+  7. The public Ip address will be shown and you can access the site using it.
